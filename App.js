@@ -1,34 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown'
+import React, { useState } from 'react';
+import { Button,Text ,TextInput, View, StyleSheet } from 'react-native';
 
 export default function App() {
+  const [rows, setRows] = useState([{ parada: 1, presion: '', temperatura: '', profundidad: '', densidad: '' }]);
 
-  const filesTypes = ["Datos de los pozos", "Puntos"]
+  const addRow = () => {
+    const newRow = { parada: rows.length + 1, presion: '', temperatura: '', profundidad: '', densidad: '' };
+    setRows([...rows, newRow]);
+  };
+
+  const deleteRow = () => {
+    const newRows = [...rows];
+    newRows.pop();
+    setRows(newRows);
+  };
+
+  const updateRow = (index, field, value) => {
+    const newRows = [...rows];
+    newRows[index][field] = value;
+    setRows(newRows);
+  };
 
   return (
     <View style={styles.container}>
-      <SelectDropdown
-        buttonStyle={selectStyle.buttonSelect}
-        dropdownStyle={selectStyle.dropdownSelect}
-        defaultButtonText='Seleccione una opción'
-        statusBarTranslucent={true}
-        dropdownIconPosition='right'
-        data={filesTypes}
-        onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index)
-        }}
-        buttonTextAfterSelection={(selectedItem, index) => {
-          // text represented after item is selected
-          // if data array is an array of objects then return selectedItem.property to render after item is selected
-          return selectedItem
-        }}
-        rowTextForSelection={(item, index) => {
-          // text represented for each item in dropdown
-          // if data array is an array of objects then return item.property to represent item in dropdown
-          return item
-        }}
-      />
+      {rows.map((row, index) => (
+        <View key={index} style={styles.row}>
+          <Text>Parada: {row.parada}</Text>
+          <TextInput placeholder="Presión" onChangeText={(value) => updateRow(index, 'presion', value)} />
+          <TextInput placeholder="Temperatura" onChangeText={(value) => updateRow(index, 'temperatura', value)} />
+          <TextInput placeholder="Profundidad" onChangeText={(value) => updateRow(index, 'profundidad', value)} />
+          <TextInput placeholder="Densidad" onChangeText={(value) => updateRow(index, 'densidad', value)} />
+        </View>
+      ))}
+      <Button title="Agregar fila" onPress={addRow} />
+      <Button title="Borrar fila" onPress={deleteRow} />
     </View>
   );
 }
@@ -36,25 +41,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
   },
 });
-
-const selectStyle = StyleSheet.create({
-  buttonSelect: {
-    borderRadius: 10,
-    borderColor: "#000000",
-    borderStyle: 'solid',
-    borderWidth: 3,
-    backgroundColor: "#efd510"
-  },
-  dropdownSelect: {
-    borderRadius: 10,
-    borderColor: "#000000",
-    borderStyle: 'solid',
-    borderWidth: 3,
-    backgroundColor: "#efd510"
-  },
-})
