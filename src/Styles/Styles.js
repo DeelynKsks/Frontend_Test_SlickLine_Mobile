@@ -1,18 +1,19 @@
 import { StyleSheet } from "react-native";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 20,
+      padding: scale(20),
     },
     row: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginBottom: 10,
+      marginBottom: verticalScale(5),
     },
     buttonContainer: {
       flexDirection: 'row',
-      marginBottom: 20, // o cualquier valor que desees para el espacio entre los botones y el siguiente elemento
+      marginBottom: verticalScale(5), // o cualquier valor que desees para el espacio entre los botones y el siguiente elemento
       justifyContent: "space-between",
     },
     buttonWrapper: {
@@ -20,8 +21,8 @@ export const styles = StyleSheet.create({
     },
     button: {
       borderStyle: 'solid',
-      borderWidth: 1,
-      borderRadius: 5,
+      borderWidth: moderateScale(1),
+      borderRadius: moderateScale(5),
       borderColor: "#000000",
       backgroundColor: "#efd510",
       width: '100%',
@@ -29,16 +30,16 @@ export const styles = StyleSheet.create({
     },
     sendButton: {
       borderStyle:'solid',
-      borderWidth :1,
-      borderRadius :5,
+      borderWidth :moderateScale(1),
+      borderRadius :moderateScale(5),
       borderColor :"#000000",
       backgroundColor :"#efd510",
       width :'50%',
       alignSelf: 'center',
-      marginTop :10
+      marginTop :moderateScale(15)
     },
     buttonText: {
       textAlign: 'center',
-      fontSize: 17
+      fontSize: moderateScale(17)
     }
   });

@@ -4,10 +4,13 @@ import { ScrollView, View } from 'react-native';
 import RowsForm from './RowsForm';
 import ButtonTouchable from './ButtonTouchable';
 
-function FormSendData({navigation}) {
+function FormSendData({navigation, route}) {
     const [rows, setRows] = useState([{ parada: 1, presion: '', temperatura: '', profundidad: '', densidad: '' }]);
     const scrollViewRef = useRef();
   
+    const { data } = route.params
+    console.log(data)
+
     const addRow = () => {
       const newRow = { parada: rows.length + 1, presion: '', temperatura: '', profundidad: '', densidad: '' };
       setRows([...rows, newRow]);
@@ -36,8 +39,9 @@ function FormSendData({navigation}) {
     return (
       <ScrollView style={styles.container} ref={scrollViewRef}>
         <View style={{marginBottom: 30}}></View>
+        
         {rows.map((row, index) => (
-          <RowsForm key={index} data={row} updateRow={updateRow} />
+          <RowsForm key={index} data={row} updateRow={updateRow} conditional={data} />
         ))}
         <View style={styles.buttonContainer}>
           <View style={styles.buttonWrapper}>

@@ -8,6 +8,42 @@ export default function ChartsData({data}) {
     const temperatura = data.map(item => item.temperatura);
     const profundidad = data.map(item => item.profundidad.toString()); // Convertir a cadenas
 
+    function calculateDensity(pressure, depth) {
+      if (!pressure || !depth) {
+        return null;
+      }
+    
+      let g = 9.81; // aceleración debido a la gravedad en m/s²
+      let pressureInPascals = parseFloat(pressure) * 6894.76; // convertir la presión de psia a Pascales
+      let density = pressureInPascals / (g * parseFloat(depth)); // calcular la densidad en kg/m³
+    
+      return density;
+    }
+
+    const fluidTypes = data.map(item => {
+      let density;
+      if (item.densidad) {
+        // Si el usuario proporcionó un valor de densidad, úsalo
+        density = parseFloat(item.densidad);
+      } else {
+        // Si no, calcula la densidad a partir de la presión y la profundidad
+        density = calculateDensity(item.presion, item.profundidad);
+      }
+    
+      let fluidType = "Desconocido";
+    
+      if (density >= 800 && density <= 900) {
+        fluidType = "Agua Salada";
+      } else if (density > 900) {
+        fluidType = "Petróleo";
+      } else if (density < 800) {
+        fluidType = "Gas";
+      }
+    
+      return fluidType;
+    });
+    
+
     const chartDataPresion = {
       labels: profundidad, // Profundidad en el eje X
       datasets: [

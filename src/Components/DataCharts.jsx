@@ -1,82 +1,59 @@
-// DataCharts.jsx
-import React from 'react';
-import { Dimensions } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
+// import React from 'react';
+// import { View, Text, Dimensions } from 'react-native';
+// import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
+// import * as shape from 'd3-shape';
 
-const DataCharts = ({ data }) => {
-  // Aquí, estás desestructurando la prop 'data' que se pasa al componente DataCharts.
-  // 'data' es un array de objetos, donde cada objeto representa una fila del formulario.
+// export default function ChartsData({data}) {
+//     // Crear arrays para profundidad, presión y temperatura
+//     const presion = data.map(item => parseFloat(item.presion));
+//     const temperatura = data.map(item => parseFloat(item.temperatura));
+//     const profundidad = data.map(item => parseFloat(item.profundidad)); 
 
-  // Creas una variable 'labels' que es un array de strings, donde cada string representa una parada (`P1`, `P2`, etc.).
-  // Esto se utilizará para las etiquetas del eje x de los gráficos.
-  const labels = data.map((item, index) => `P${index + 1}`);
+//     const fluidTypes = data.map(item => {
+//       const density = item.densidad ? parseFloat(item.densidad) : calculateDensity(item.presion, item.profundidad);
+//       let fluidType = "Desconocido";
+//       if (density >= 800 && density <= 900) {
+//         fluidType = "Agua Salada";
+//       } else if (density > 900) {
+//         fluidType = "Petróleo";
+//       } else if (density < 800) {
+//         fluidType = "Gas";
+//       }
+//       return fluidType;
+//     });
 
-  // Creas dos variables, 'presionData' y 'temperaturaData', que son arrays de números.
-  // Estos arrays contienen los valores de presión y temperatura respectivamente para cada parada.
-  // Estos se utilizarán para los valores del eje y de los gráficos.
-  const presionData = data.map(item => parseFloat(item.presion));
-  const temperaturaData = data.map(item => parseFloat(item.temperatura));
-
-  return (
-    <>
-      <LineChart
-        data={{
-          labels: labels,
-          datasets: [
-            {
-              data: presionData,
-            },
-          ],
-        }}
-        width={Dimensions.get('window').width}
-        height={220}
-        yAxisLabel=""
-        yAxisSuffix=" psia"
-        chartConfig={{
-          backgroundColor: '#e26a00',
-          backgroundGradientFrom: '#fb8c00',
-          backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2,
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
-        }}
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
-      />
-      <LineChart
-        data={{
-          labels: labels,
-          datasets: [
-            {
-              data: temperaturaData,
-            },
-          ],
-        }}
-        width={Dimensions.get('window').width}
-        height={220}
-        yAxisLabel=""
-        yAxisSuffix=" C°"
-        chartConfig={{
-          backgroundColor: '#e26a00',
-          backgroundGradientFrom: '#fb8c00',
-          backgroundGradientTo: '#ffa726',
-          decimalPlaces: 2,
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
-        }}
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
-      />
-    </>
-  );
-};
-
-export default DataCharts;
+//     return (
+//       <View>
+//         <Text>Gráfico del Gradiente de Presión</Text>
+//         <View style={{ height: 200, flexDirection: 'row' }}>
+//           <YAxis
+//             data={presion}
+//             contentInset={{ top: 20, bottom: 20 }}
+//             svg={{
+//               fill: 'grey',
+//               fontSize: 10,
+//             }}
+//             numberOfTicks={10}
+//             formatLabel={(value) => `${value}`}
+//           />
+//           <LineChart
+//             style={{ flex: 1, marginLeft: 16 }}
+//             data={presion}
+//             svg={{ stroke: 'rgb(134, 65, 244)' }}
+//             contentInset={{ top: 20, bottom: 20 }}
+//             curve={shape.curveNatural}
+//           >
+//             <Grid />
+//           </LineChart>
+//         </View>
+//         <XAxis
+//           style={{ marginHorizontal: -10 }}
+//           data={profundidad}
+//           formatLabel={(value, index) => `${fluidTypes[index]}`}
+//           contentInset={{ left: 10, right: 10 }}
+//           svg={{ fontSize: 10, fill: 'black' }}
+//         />
+//         {/* Repite para el gráfico de temperatura */}
+//       </View>
+//     );
+// }
