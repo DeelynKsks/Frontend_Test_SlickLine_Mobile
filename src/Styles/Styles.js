@@ -43,3 +43,23 @@ export const styles = StyleSheet.create({
       fontSize: moderateScale(17)
     }
   });
+
+export const styleList = StyleSheet.create({
+  list: {
+    backgroundColor: "#efd510",
+    borderColor :"#000000",
+    borderWidth :moderateScale(1),
+    borderRadius :moderateScale(5),
+    width: '75%'
+  },
+  listEntry: {
+    borderStyle:'solid',
+    borderWidth :moderateScale(1),
+    borderRadius :moderateScale(5),
+    borderColor :"#000000",
+    backgroundColor :"#efd510",
+    width :'90%',
+    alignSelf: 'center',
+    marginTop :moderateScale(15)
+  },
+})

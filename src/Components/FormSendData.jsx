@@ -25,9 +25,9 @@ function FormSendData({navigation, route}) {
   
     const updateRow = (index, field, value) => {
       const newRows = [...rows];
-      newRows[index][field] = value;
+      newRows[index][field] = Number(value);
       setRows(newRows);
-    };
+    };    
   
     // FormSendData.jsx
     const sendData = () => {
@@ -39,7 +39,6 @@ function FormSendData({navigation, route}) {
     return (
       <ScrollView style={styles.container} ref={scrollViewRef}>
         <View style={{marginBottom: 30}}></View>
-        
         {rows.map((row, index) => (
           <RowsForm key={index} data={row} updateRow={updateRow} conditional={data} />
         ))}

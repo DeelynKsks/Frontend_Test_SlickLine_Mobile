@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import ButtonTouchable from './../Components/ButtonTouchable';
-import { styles } from '../Styles/Styles';
+import { styleList, styles } from '../Styles/Styles';
 
 function Question({navigation}) {
 
-    const RenderForm = (res) => {
+    const formRedirection = (res) => {
         navigation.navigate('Carga de Datos', {data: res});
     }
 
@@ -14,16 +14,16 @@ function Question({navigation}) {
         <Text>¿Tiene acceso a los valores de densidad?</Text>
         <View>
             <ButtonTouchable
-                styleButton={styles.button}
+                styleButton={styleList.listEntry}
                 styleText={styles.buttonText}
                 text={"Sí"}
-                pressFunction={() => RenderForm("Sí")}
+                pressFunction={() => formRedirection("Sí")}
             />
             <ButtonTouchable
-                styleButton={styles.button}
+                styleButton={styleList.listEntry}
                 styleText={styles.buttonText}
                 text={"No"}
-                pressFunction={() => RenderForm("No")}
+                pressFunction={() => formRedirection("No")}
             />
         </View>
     </View>

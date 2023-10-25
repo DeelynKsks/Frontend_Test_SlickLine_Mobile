@@ -10,7 +10,8 @@ function ChartsPage({ route }) {
 
   return (
     <View>
-      <ChartsData data={data} />
+      {/* <ChartsData data={data} /> */}
+      <DataCharts data={data} />
     </View>
   );
 }
