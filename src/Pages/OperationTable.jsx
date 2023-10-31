@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from '../Styles/Styles';
+import ButtonTouchable from './../Components/ButtonTouchable';
 
-function OperationTable({ route }) {
+function OperationTable({ navigation, route }) {
   const datos = route.params;
 
+  const chartRedirection = (data) => {
+    navigation.navigate('ChartsPage', { data: data})
+  }
+  
   return (
     <>
       <FlatList
@@ -20,6 +25,12 @@ function OperationTable({ route }) {
             <Text>{item.densidad}</Text>
           </View>
         )}
+      />
+      <ButtonTouchable
+        styleButton={styles.button}
+        styleText={styles.buttonText}
+        text={'Mostrar en gráfico'}
+        pressFunction={() => chartRedirection(datos.data)}
       />
       <Text>asdasd</Text>
     </>
