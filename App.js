@@ -7,19 +7,21 @@ import Question from './src/Pages/Question';
 import JobsList from './src/Pages/JobsList';
 import OperationTable from './src/Pages/OperationTable';
 import Principal from './src/Pages/Principal';
+import FileUploader from './src/Pages/FileUploader';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Principal">
+      <Stack.Navigator initialRouteName="FileUploader">
         <Stack.Screen name="Principal" component={Principal} />
         <Stack.Screen name="Pregunta" component={Question} />
+        <Stack.Screen name="FileUploader" component={FileUploader} />
         <Stack.Screen name="Carga de Datos" component={FormSendData} />
-        <Stack.Screen name="ChartsPage" component={ChartsPage} />
         <Stack.Screen name="JobsList" component={JobsList} />
         <Stack.Screen name="Table" component={OperationTable} />
+        <Stack.Screen name="ChartsPage" component={ChartsPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
