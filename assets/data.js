@@ -15,3 +15,67 @@ export const data = [
     {"densidad": "", "parada": 14, "presion": 167.78, "profundidad": 50, "temperatura": 125.09},
     {"densidad": "", "parada": 15, "presion": 67.55, "profundidad": 0, "temperatura": 112.97}
 ]
+
+export const wells = [
+    {
+        idWell: 1,
+        operation: 'Operación n°17058'
+    },
+    {
+        idWell: 2,
+        operation: ''
+    },
+    {
+        idWell: 3,
+        operation: ''
+    },
+    {
+        idWell: 4,
+        operation: ''
+    },
+    {
+        idWell: 5,
+        operation: ''
+    },
+    {
+        idWell: 6,
+        operation: ''
+    },
+    {
+        idWell: 7,
+        operation: ''
+    },
+    {
+        idWell: 8,
+        operation: ''
+    },
+    {
+        idWell: 9,
+        operation: ''
+    },
+    {
+        idWell: 10,
+        operation: ''
+    },
+    {
+        idWell: 11,
+        operation: ''
+    },
+    {
+        idWell: 12,
+        operation: ''
+    },
+    {
+        idWell: 13,
+        operation: ''
+    },
+    {
+        idWell: 14,
+        operation: ''
+    },
+    {
+        idWell: 15,
+        operation: ''
+    }
+
+]

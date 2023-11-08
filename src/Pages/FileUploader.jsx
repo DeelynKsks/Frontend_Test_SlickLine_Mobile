@@ -4,6 +4,9 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 
 function calculateDensity(pressure, depth) {
+  if (depth === 0) {
+    return 0;
+  }
   let g = 9.81;
   let pressureInPascals = pressure * 6894.76;
   let density = pressureInPascals / (g * depth);
@@ -20,6 +23,7 @@ export default function FileUploader() {
     let headers = lines[0].split(/\s+/);
     let pressureIndex = headers.indexOf('Pressure');
     let temperatureIndex = headers.indexOf('Temperature');
+    let depthIndex = headers.indexOf('Depth');
     let stopIndex = headers.length - 1;
 
     let formattedData = lines.slice(1).map(line => {
@@ -30,11 +34,13 @@ export default function FileUploader() {
       let pressure = parseFloat(parts[pressureIndex]);
       let temperature = parseFloat(parts[temperatureIndex]);
       let stop = 'P ' + parts.slice(stopIndex).join(' ').replace('PARADA N� ', '');
-      let density = calculateDensity(pressure, temperature);
+      let depth = parseFloat(parts[depthIndex]);
+      let density = calculateDensity(pressure, depth);
       return {
         Stop: stop,
         Pressure: pressure,
         Temperature: temperature,
+        Depth: depth,
         Density: density
       };
     }).filter(item => item !== null && !isNaN(item.Pressure));
