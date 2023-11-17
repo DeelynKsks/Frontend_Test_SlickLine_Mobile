@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
+import * as data from '../../assets/data';
+
 
 function calculateDensity(pressure, depth) {
   let g = 9.81; // aceleración debido a la gravedad en m/s²
@@ -9,9 +11,14 @@ function calculateDensity(pressure, depth) {
   return density;
 }
 
-export default function DataCharts({ data }) {
-  const fluidTypes = data.map(item => {
-    const density = calculateDensity(item.presion, item.profundidad);
+export default function DataCharts() {
+
+  // let datos
+
+  // (data.data.data) ? datos = data.data.data : datos = data.data
+
+  const fluidTypes = data.data.map(item => {
+    const density = calculateDensity(item.Pressure, item.Depth);
     let fluidType = "Desconocido";
     if (density >= 800 && density <= 900) {
       fluidType = "Agua Salada";
@@ -23,20 +30,20 @@ export default function DataCharts({ data }) {
     return fluidType;
   });
 
-  console.log(data)
+  // console.log(datos)
 
-  const pressureData = data.map((item, index) => ({
-    value: item.presion,
-    label: `P${item.parada}`,
-    depth: item.profundidad,
+  const pressureData = data.data.map((item, index) => ({
+    value: item.Pressure,
+    label: `P${item.Stop}`,
+    depth: item.Depth,
     dataPointText: fluidTypes[index]
   }))
 
-  const temperatureData = data.map((item, index) => ({
-    value: item.temperatura,
-    depth: item.profundidad,
-    label: `P${item.parada}`,
-    temp: item.temperatura,
+  const temperatureData = data.data.map((item, index) => ({
+    value: item.Temperature,
+    depth: item.Depth,
+    label: `P${item.Stop}`,
+    temp: item.Temperature,
     dataPointText: fluidTypes[index]
   }))
 

@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="FileUploader">
+      <Stack.Navigator initialRouteName="Principal">
         <Stack.Screen name="Principal" component={Principal} />
         <Stack.Screen name="Pregunta" component={Question} />
         <Stack.Screen name="FileUploader" component={FileUploader} />

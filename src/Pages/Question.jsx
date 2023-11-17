@@ -9,6 +9,10 @@ function Question({navigation}) {
         navigation.navigate('Carga de Datos', {data: res});
     }
 
+    const fileUploaderRedirection = (res) => {
+        navigation.navigate('FileUploader');
+    }
+
   return (
     <View style={miniStyle.container}>
         <Text>¿Tiene acceso a los valores de densidad?</Text>
@@ -24,6 +28,13 @@ function Question({navigation}) {
                 styleText={styles.buttonText}
                 text={"No"}
                 pressFunction={() => formRedirection("No")}
+            />
+            <View style={{width: '15%'}}></View>
+            <ButtonTouchable
+                styleButton={styleList.listEntry}
+                styleText={styles.buttonText}
+                text={"Cargar archivo en su lugar"}
+                pressFunction={() => fileUploaderRedirection()}
             />
         </View>
     </View>

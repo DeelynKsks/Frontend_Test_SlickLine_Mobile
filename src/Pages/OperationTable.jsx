@@ -2,27 +2,32 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from '../Styles/Styles';
 import ButtonTouchable from './../Components/ButtonTouchable';
+import * as data from '../../assets/data';
 
 function OperationTable({ navigation, route }) {
   const datos = route.params;
 
-  const chartRedirection = (data) => {
-    navigation.navigate('ChartsPage', { data: data})
+  // let data
+  console.log(data)
+  const chartRedirection = () => {
+    navigation.navigate('ChartsPage')
   }
-  
+
+  // (datos.data.data) ? data = datos.data.data : data = datos.data
+
   return (
     <>
       <FlatList
         style={{ flex: 1 }}
-        data={datos.data}
+        data={data.data}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            <Text>Parada: {item.parada}</Text>
-            <Text>{item.presion}</Text>
-            <Text>{item.temperatura}</Text>
-            <Text>{item.profundidad}</Text>
-            <Text>{item.densidad}</Text>
+            <Text>Parada: {index+1}</Text>
+            <Text>{item.Pressure}</Text>
+            <Text>{item.Temperature}</Text>
+            <Text>{item.Depth}</Text>
+            <Text>{item.Density}</Text>
           </View>
         )}
       />
@@ -30,7 +35,7 @@ function OperationTable({ navigation, route }) {
         styleButton={styles.button}
         styleText={styles.buttonText}
         text={'Mostrar en gráfico'}
-        pressFunction={() => chartRedirection(datos.data)}
+        pressFunction={() => chartRedirection()}
       />
       <Text>asdasd</Text>
     </>
