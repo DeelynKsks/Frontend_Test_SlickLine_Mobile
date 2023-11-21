@@ -8,13 +8,15 @@ import JobsList from './src/Pages/JobsList';
 import OperationTable from './src/Pages/OperationTable';
 import Principal from './src/Pages/Principal';
 import FileUploader from './src/Pages/FileUploader';
+import HomeScreen from './src/Pages/HomeScreen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Principal">
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="Principal" component={Principal} />
         <Stack.Screen name="Pregunta" component={Question} />
         <Stack.Screen name="FileUploader" component={FileUploader} />
